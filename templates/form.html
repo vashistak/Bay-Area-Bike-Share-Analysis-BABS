@@ -1,0 +1,410 @@
+<!doctype html>
+<html>
+<head>
+<style>
+h3 {
+	font-family: Georgia, Times, "Times New Roman", serif;
+	font-size: 18px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	line-height: 19.8px;
+}
+h4 {
+	font-family: Georgia, Times, "Times New Roman", serif;
+	font-size: 16px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	line-height: 18.4px;
+}
+
+p {
+	font-family: Georgia, Times, "Times New Roman", serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+}
+blockquote {
+	font-family: Georgia, Times, "Times New Roman", serif;
+	font-size: 21px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 30px;
+}
+pre {
+	font-family: Georgia, Times, "Times New Roman", serif;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	
+</style>
+<style>
+body {font-family: "Lato", sans-serif;}
+
+/* Style the tab */
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: White;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: LightSlateGrey;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: SteelBlue;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+</style>
+
+<script type="text/javascript" src="static/chartjs.js"></script>
+<script src="https://unpkg.com/vue"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<link rel="stylesheet" href="../static/style.css" type="text/css" />
+<title>BIKE SHARE</title>
+</head>
+<body style="background-color:powderblue;">
+
+<p style = "font-size:28px" > San Francisco Bike Share Program </p>
+</body>
+
+<body>
+<div class="tab">
+  <button class="tablinks" onclick="openBike(event, 'CUSTOMER SEGMENT')" >CUSTOMER SEGMENT</button>
+  <button class="tablinks" onclick="openBike(event, 'ROUTE ANALYSIS')">ROUTE ANALYSIS</button>
+  <button class="tablinks" onclick="openBike(event, 'TREND ANALYSIS')">TREND ANALYSIS</button>
+</div>
+
+</body>
+
+<body>
+
+<div id="CUSTOMER SEGMENT" class="tabcontent">
+	<h3>Explore Customer type by Route</h3>
+	
+	<div class=page>
+	<h3>Select Data to find percentage of customer type</h3>
+	<div class=metanav>
+	<!-- <form id='user_input' method='post' action='getting_form2' > -->
+	
+		
+	<div id="example-2" style="text-align: left">
+	<p>For example:<br/>
+	1. Startin Station : All , Destination : All gives percentage pie chart for full data.<br/>
+	2. Selecting Station to All Destinations or  Station to Station filters data for Routes.</p>
+	<br><br>
+	<p>Starting Station: </p>
+    <select id="Start_Station" name="Start_Station">
+		<option value="All">All</option>
+		<option value="San Francisco Caltrain (Townsend at 4th)">San Francisco Caltrain (Townsend at 4th)</option>
+		<option value="San Francisco Caltrain 2 (330 Townsend)">San Francisco Caltrain 2 (330 Townsend)</option>
+		<option value="Temporary Transbay Terminal (Howard at Beale)">Temporary Transbay Terminal (Howard at Beale)</option>
+		<option value="Market at Sansome">Market at Sansome</option>
+		<option value="2nd at Townsend">2nd at Townsend</option>
+		<option value="Harry Bridges Plaza (Ferry Building)">Harry Bridges Plaza (Ferry Building)</option>
+		<option value="Steuart at Market">Steuart at Market</option>
+		<option value="Townsend at 7th">Townsend at 7th</option>
+		<option value="Market at 4th">Market at 4th</option>
+		<option value="Embarcadero at Sansome">Embarcadero at Sansome</option>
+		
+    </select>
+    <br><br>
+	<p>Destination Station: </p>
+    <select id="Destination" name="Destination">
+		<option value="All">All</option>
+		<option value="San Francisco Caltrain (Townsend at 4th)">San Francisco Caltrain (Townsend at 4th)</option>
+		<option value="San Francisco Caltrain 2 (330 Townsend)">San Francisco Caltrain 2 (330 Townsend)</option>
+		<option value="Temporary Transbay Terminal (Howard at Beale)">Temporary Transbay Terminal (Howard at Beale)</option>
+		<option value="Market at Sansome">Market at Sansome</option>
+		<option value="2nd at Townsend">2nd at Townsend</option>
+		<option value="Harry Bridges Plaza (Ferry Building)">Harry Bridges Plaza (Ferry Building)</option>
+		<option value="Steuart at Market">Steuart at Market</option>
+		<option value="Townsend at 7th">Townsend at 7th</option>
+		<option value="Market at 4th">Market at 4th</option>
+		<option value="Embarcadero at Sansome">Embarcadero at Sansome</option>
+		
+    </select>
+	<p> Note: 10 stations are choose for tool relevance </p>
+    <br><br>
+	<button v-on:click="submit()">Submit</button>
+	<p>		 Loading in 10 seconds. </p>
+	<canvas id="graphs" width="400px" height="400px" style="display: block;height: 400px;width: 400px;"></canvas>
+	<!-- </form> -->
+	</div>
+	</div>
+	</div>
+</div>
+
+<div id="ROUTE ANALYSIS" class="tabcontent">
+	<h3>Explore Market Segment in Various Ways </h3>
+	
+	<div class=page>
+	
+	<div class=metanav style="text-align: left">
+		
+		<h4>
+		Select Data  
+		</h4>
+		
+		<p>
+		1. By Number or Duration gives Analysis for Total Rides or Total Duration of Rides<br/>
+		2.Choose Data for Route (start, Destination) or All gives total data.<br/>
+		3. Choose Analyze by Month, Day, Time(Minutes)<br/>
+		4. Or choose starting station or destination to study major routes starting group by start station or destination<br/>
+		5. Get Analysis for how many top stations or destinations you want to visualize by choosing Select top No.<br/>
+		<br/>
+		
+		</p>
+		<br><br>
+		
+
+		
+	<form id='user_input' method='post' action='getting_form' >
+    
+	<p>Analyze by Total Number or Total Duration of Rides</p>
+    <select name="Volume_Sum">
+    <option value="Number">Number</option>
+    <option value="Duration">Duration</option>
+    </select>
+	<br></br>
+	<p>Starting Station</p>
+    <select name="Start_Station">
+	<option value="All">All</option>
+    <option value="San Francisco Caltrain (Townsend at 4th)">San Francisco Caltrain (Townsend at 4th)</option>
+    <option value="San Francisco Caltrain 2 (330 Townsend)">San Francisco Caltrain 2 (330 Townsend)</option>
+    <option value="Temporary Transbay Terminal (Howard at Beale)">Temporary Transbay Terminal (Howard at Beale)</option>
+    <option value="Market at Sansome">Market at Sansome</option>
+    <option value="2nd at Townsend">2nd at Townsend</option>
+    <option value="Harry Bridges Plaza (Ferry Building)">Harry Bridges Plaza (Ferry Building)</option>
+    <option value="Steuart at Market">Steuart at Market</option>
+    <option value="Townsend at 7th">Townsend at 7th</option>
+    <option value="Market at 4th">Market at 4th</option>
+    <option value="Embarcadero at Sansome">Embarcadero at Sansome</option>
+    
+    </select>
+    <br><br>
+	<p>Destination Station</p>
+    <select name="Destination">
+	<option value="All">All</option>
+    <option value="San Francisco Caltrain (Townsend at 4th)">San Francisco Caltrain (Townsend at 4th)</option>
+    <option value="San Francisco Caltrain 2 (330 Townsend)">San Francisco Caltrain 2 (330 Townsend)</option>
+    <option value="Temporary Transbay Terminal (Howard at Beale)">Temporary Transbay Terminal (Howard at Beale)</option>
+    <option value="Market at Sansome">Market at Sansome</option>
+    <option value="2nd at Townsend">2nd at Townsend</option>
+    <option value="Harry Bridges Plaza (Ferry Building)">Harry Bridges Plaza (Ferry Building)</option>
+    <option value="Steuart at Market">Steuart at Market</option>
+    <option value="Townsend at 7th">Townsend at 7th</option>
+    <option value="Market at 4th">Market at 4th</option>
+    <option value="Embarcadero at Sansome">Embarcadero at Sansome</option>
+    
+    </select>
+    <br><br>
+
+	<p>Analyze by</p>
+    <select name="secondaryBy">
+    <option value="start_station">start_station</option>
+    <option value="end_station">end_station</option>
+    <option value="month">Month</option>
+    <option value="day">Day</option>
+	<option value="d_bucket">Time(minutes)</option>
+	
+    </select>
+    <p>Filter for Top </p>
+    Choose (Between 1 and 20):
+	<input type="number" name="top" min="1" max="20" value="10">
+    <br><br>
+    <input type='submit' value='Submit' />
+	<p>Note: Use browser back button for returning to page</p>
+	<p>Note: Charts are interactive. Move pointer to see data for Total Number or Duration of Rides </p>
+	</form>
+
+  </div>
+</div>
+
+</div>
+
+<div id="TREND ANALYSIS" class="tabcontent">
+	<h3>Area Charts for Analysing Trend</h3>
+	
+	<div class=page>
+	<h4>Select Data</h4>
+	<div class=metanav style="text-align: left">
+
+		<p>1. From By Number or Total choose Number for Total Number of Rides or Duartion for Total Duration of Rides.
+		2. Choose Start and Destination for filtering data</br>
+		3. Data can be All Starting station to one Destination</br>
+		4. One Starting station to all its Destinations</br>
+		5. Or All Routes Data by choosing both all </br>
+		6. Individual Route by selecting stations</p>
+		
+		<br><br>
+		
+
+		
+	<form id='user_input' method='post' action='getting_form3' >
+	<p>Analyze by Total Number or Total Duration of Rides</p>
+    <select name="by">
+    <option value="Number_of_Rides">Number</option>
+    <option value="Total_Duration">Duration</option>
+    </select>
+	<br></br>
+	<p>Starting Station</p>
+    <select name="Start_Station">
+	<option value="All">All</option>
+    <option value="San Francisco Caltrain (Townsend at 4th)">San Francisco Caltrain (Townsend at 4th)</option>
+    <option value="San Francisco Caltrain 2 (330 Townsend)">San Francisco Caltrain 2 (330 Townsend)</option>
+    <option value="Temporary Transbay Terminal (Howard at Beale)">Temporary Transbay Terminal (Howard at Beale)</option>
+    <option value="Market at Sansome">Market at Sansome</option>
+    <option value="2nd at Townsend">2nd at Townsend</option>
+    <option value="Harry Bridges Plaza (Ferry Building)">Harry Bridges Plaza (Ferry Building)</option>
+    <option value="Steuart at Market">Steuart at Market</option>
+    <option value="Townsend at 7th">Townsend at 7th</option>
+    <option value="Market at 4th">Market at 4th</option>
+    <option value="Embarcadero at Sansome">Embarcadero at Sansome</option>
+    
+    </select>
+    <br><br>
+	<p>Destination Station</p>
+    <select name="Destination">
+	<option value="All">All</option>
+    <option value="San Francisco Caltrain (Townsend at 4th)">San Francisco Caltrain (Townsend at 4th)</option>
+    <option value="San Francisco Caltrain 2 (330 Townsend)">San Francisco Caltrain 2 (330 Townsend)</option>
+    <option value="Temporary Transbay Terminal (Howard at Beale)">Temporary Transbay Terminal (Howard at Beale)</option>
+    <option value="Market at Sansome">Market at Sansome</option>
+    <option value="2nd at Townsend">2nd at Townsend</option>
+    <option value="Harry Bridges Plaza (Ferry Building)">Harry Bridges Plaza (Ferry Building)</option>
+    <option value="Steuart at Market">Steuart at Market</option>
+    <option value="Townsend at 7th">Townsend at 7th</option>
+    <option value="Market at 4th">Market at 4th</option>
+    <option value="Embarcadero at Sansome">Embarcadero at Sansome</option>
+    <br><br>
+    </select>
+    <p>Analyze for a month or All for full year</p>
+    <select name="Month">
+    <option value="All">All</option>
+    <option value="Mar">Mar</option>
+	<option value="Apr">Apr</option>
+    <option value="May">May</option>
+	<option value="Jun">Jun</option>
+    <option value="Jul">Jul</option>
+	<option value="Aug">Aug</option>
+    <option value="Sep">Sep</option>
+    </select>
+	<br></br>
+	
+    <input type='submit' value='Submit' />
+	<p>Note: Area chart it interactive. Move pointer to see data for Total Number or Duration of Rides and Station.</p>
+	</form>
+
+  </div>
+</div>
+
+</div>
+
+<script>
+
+	var graphData = {
+		labels: ['Customers', 'Subscribers'],
+		datasets: [
+		{
+			backgroundColor: ['#33ADFF', '#FF7433'],
+			data: [300, 1200]
+		}
+		]
+	};
+	
+	new Vue({
+		el: '#example-2',
+		methods: {
+			submit: function () {
+				this.getResults();
+				/*
+				var canvas = document.getElementById('graphs');
+				var context = canvas.getContext('2d');
+				var clientsChart = new Chart(context, {
+					type: 'pie',
+					data: graphData,
+					});
+				*/
+			},
+			
+			getResults: function() {
+				var self = this;
+				
+				var x = document.getElementById("Start_Station");
+				var dp1 = x.options[x.selectedIndex].value;
+			
+				var y = document.getElementById("Destination");
+				var dp2 = y.options[y.selectedIndex].value;
+				
+				console.log(dp1)
+				console.log(dp2)
+				
+				$.ajax({
+					url: "/getting_form2",
+					type: "POST",
+					contentType: "application/json",
+					data: dp1 + '|' + dp2,
+					dataType: "json",
+					success: function(result) {
+						console.log(result)
+						var canvas = document.getElementById('graphs');
+						var context = canvas.getContext('2d');
+						var clientsChart = new Chart(context, {
+							type: 'pie',
+							data: result,
+						});
+					}
+				})
+			}	
+		}
+	});
+	
+	function openBike(evt, cityName) {
+		var i, tabcontent, tablinks;
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		}
+		tablinks = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(" active", "");
+		}
+		document.getElementById(cityName).style.display = "block";
+		evt.currentTarget.className += " active";
+	}
+	
+
+</script>
+
+
+</body>
+</html>
