@@ -69,7 +69,7 @@ traitlets==4.3.2
 urllib3==1.21.1
 wcwidth==0.1.7
 webencodings==0.5
-Werkzeug==0.12.2
+Werkzeug==0.15.3
 widgetsnbextension==2.0.0
 WTForms==2.1
 wxPython==4.0.0a1
