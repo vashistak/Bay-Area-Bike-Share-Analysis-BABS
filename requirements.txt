@@ -1,7 +1,7 @@
 aniso8601==1.2.1
 appdirs==1.4.0
 
-bleach==2.0.0
+bleach==3.3.0
 brewer2mpl==1.4.1
 certifi==2017.4.17
 chardet==3.0.4
