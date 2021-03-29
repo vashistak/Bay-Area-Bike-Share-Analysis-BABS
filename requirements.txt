@@ -48,7 +48,7 @@ plotly==2.0.9
 plyfile==0.4
 prompt-toolkit==1.0.14
 py==1.4.34
-Pygments==2.2.0
+Pygments==2.7.4
 pyparsing==2.1.10
 pytest==3.1.1
 python-dateutil==2.6.0
